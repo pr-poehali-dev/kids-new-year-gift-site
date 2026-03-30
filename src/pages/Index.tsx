@@ -1,5 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Icon from "@/components/ui/icon";
+
+function useCountdown(target: Date) {
+  const calc = () => {
+    const diff = Math.max(0, target.getTime() - Date.now());
+    return {
+      days: Math.floor(diff / 86400000),
+      hours: Math.floor((diff % 86400000) / 3600000),
+      minutes: Math.floor((diff % 3600000) / 60000),
+      seconds: Math.floor((diff % 60000) / 1000),
+    };
+  };
+  const [time, setTime] = useState(calc);
+  useEffect(() => {
+    const id = setInterval(() => setTime(calc()), 1000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
 
 const HERO_IMG = "https://cdn.poehali.dev/projects/811d2b8b-0774-4888-abe6-2c88c440d79b/files/a17d2031-47ab-4935-84b5-d3c09321e020.jpg";
 const GIFT_IMG = "https://cdn.poehali.dev/projects/811d2b8b-0774-4888-abe6-2c88c440d79b/files/264462d8-1cb0-4de0-8aa0-2c2e07c07efb.jpg";
@@ -50,7 +68,10 @@ const weightRanges = [
   { id: "от 1кг", label: "от 1 кг", min: 1000, max: 9999 },
 ];
 
+const NEW_YEAR = new Date(new Date().getFullYear() + (new Date() > new Date(new Date().getFullYear(), 11, 31) ? 1 : 0), 11, 31, 23, 59, 59);
+
 export default function Index() {
+  const countdown = useCountdown(NEW_YEAR);
   const [activeSection, setActiveSection] = useState("home");
   const [typeFilter, setTypeFilter] = useState("Все");
   const [themeFilter, setThemeFilter] = useState("Все");
@@ -197,7 +218,41 @@ export default function Index() {
                 Смотреть акции
               </button>
             </div>
-            <div className="mt-10 flex gap-8">
+            {/* Countdown */}
+            <div className="mt-10 rounded-2xl px-6 py-4 inline-flex flex-col"
+              style={{ backgroundColor: "#1A1512", border: "1px solid #2e2824" }}>
+              <p className="text-xs font-medium mb-3 flex items-center gap-1.5"
+                style={{ color: "#9b8b7a", fontFamily: "'Golos Text', sans-serif" }}>
+                <span>🎄</span> До Нового года осталось
+              </p>
+              <div className="flex items-end gap-4">
+                {[
+                  { value: countdown.days, label: "дней" },
+                  { value: countdown.hours, label: "часов" },
+                  { value: countdown.minutes, label: "минут" },
+                  { value: countdown.seconds, label: "секунд" },
+                ].map(({ value, label }, i) => (
+                  <div key={label} className="flex items-end gap-4">
+                    {i > 0 && <span className="text-2xl font-light mb-1" style={{ color: "var(--brand-red)" }}>:</span>}
+                    <div className="text-center">
+                      <div style={{
+                        fontFamily: "'Cormorant', serif",
+                        fontSize: "2.4rem",
+                        fontWeight: 600,
+                        lineHeight: 1,
+                        color: "white",
+                        minWidth: "2.5rem",
+                      }}>
+                        {String(value).padStart(2, "0")}
+                      </div>
+                      <div className="text-xs mt-1" style={{ color: "#9b8b7a" }}>{label}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-8 flex gap-8">
               {[["500+", "Товаров"], ["98%", "Довольных"], ["1 день", "Доставка"]].map(([val, label]) => (
                 <div key={label}>
                   <div style={{ fontFamily: "'Cormorant', serif", fontSize: "1.8rem", fontWeight: 600, color: "var(--brand-dark)" }}>{val}</div>
