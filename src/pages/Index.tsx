@@ -6,14 +6,18 @@ const GIFT_IMG = "https://cdn.poehali.dev/projects/811d2b8b-0774-4888-abe6-2c88c
 const TOYS_IMG = "https://cdn.poehali.dev/projects/811d2b8b-0774-4888-abe6-2c88c440d79b/files/96a5bc66-0dff-45af-bf62-658b97df1abd.jpg";
 
 const products = [
-  { id: 1, name: "Набор юного художника", age: "3-6", price: 1490, type: "Творчество", theme: "Новый год", img: GIFT_IMG, badge: "Хит" },
-  { id: 2, name: "Конструктор «Замок»", age: "6-10", price: 2990, type: "Конструктор", theme: "Зима", img: TOYS_IMG, badge: "Новинка" },
-  { id: 3, name: "Кукла в зимнем наряде", age: "3-6", price: 1890, type: "Игрушка", theme: "Новый год", img: GIFT_IMG, badge: null },
-  { id: 4, name: "Настольная игра «Снежки»", age: "6-10", price: 990, type: "Игра", theme: "Зима", img: TOYS_IMG, badge: "Акция" },
-  { id: 5, name: "Набор лего «Снегоход»", age: "10+", price: 3490, type: "Конструктор", theme: "Новый год", img: GIFT_IMG, badge: null },
-  { id: 6, name: "Мягкая игрушка Дед Мороз", age: "0-3", price: 790, type: "Игрушка", theme: "Новый год", img: TOYS_IMG, badge: "Хит" },
-  { id: 7, name: "Книга сказок с иллюстрациями", age: "3-6", price: 690, type: "Книга", theme: "Рождество", img: GIFT_IMG, badge: null },
-  { id: 8, name: "Детская химия", age: "10+", price: 2190, type: "Развитие", theme: "Зима", img: TOYS_IMG, badge: "Новинка" },
+  { id: 1, name: "Набор юного художника", age: "3-6", price: 1490, type: "Творчество", theme: "Новый год", weight: 400, img: GIFT_IMG, badge: "Хит" },
+  { id: 2, name: "Конструктор «Замок»", age: "6-10", price: 2990, type: "Конструктор", theme: "Зима", weight: 1200, img: TOYS_IMG, badge: "Новинка" },
+  { id: 3, name: "Кукла в зимнем наряде", age: "3-6", price: 1890, type: "Игрушка", theme: "Новый год", weight: 550, img: GIFT_IMG, badge: null },
+  { id: 4, name: "Настольная игра «Снежки»", age: "6-10", price: 990, type: "Игра", theme: "Зима", weight: 700, img: TOYS_IMG, badge: "Акция" },
+  { id: 5, name: "Набор лего «Снегоход»", age: "10+", price: 3490, type: "Конструктор", theme: "Новый год", weight: 900, img: GIFT_IMG, badge: null },
+  { id: 6, name: "Мягкая игрушка Дед Мороз", age: "0-3", price: 790, type: "Игрушка", theme: "Новый год", weight: 300, img: TOYS_IMG, badge: "Хит" },
+  { id: 7, name: "Книга сказок с иллюстрациями", age: "3-6", price: 690, type: "Книга", theme: "Рождество", weight: 250, img: GIFT_IMG, badge: null },
+  { id: 8, name: "Детская химия", age: "10+", price: 2190, type: "Развитие", theme: "Зима", weight: 800, img: TOYS_IMG, badge: "Новинка" },
+  { id: 9, name: "Шоколадный набор «Зима»", age: "3-6", price: 890, type: "Сладкое", theme: "Новый год", weight: 350, img: GIFT_IMG, badge: "Хит" },
+  { id: 10, name: "Конфеты ручной работы", age: "6-10", price: 1290, type: "Сладкое", theme: "Рождество", weight: 500, img: TOYS_IMG, badge: null },
+  { id: 11, name: "Новогодний торт-сюрприз", age: "0-3", price: 2490, type: "Сладкое", theme: "Новый год", weight: 1500, img: GIFT_IMG, badge: "Новинка" },
+  { id: 12, name: "Мармелад «Дед Мороз»", age: "3-6", price: 490, type: "Сладкое", theme: "Зима", weight: 200, img: TOYS_IMG, badge: null },
 ];
 
 const reviews = [
@@ -22,17 +26,39 @@ const reviews = [
   { name: "Елена В.", text: "Быстрая доставка, товар соответствует описанию. Мягкая игрушка очень мягкая и приятная на ощупь.", rating: 4, date: "20 декабря" },
 ];
 
-const ageFilters = ["Все", "0-3", "3-6", "6-10", "10+"];
-const typeFilters = ["Все", "Игрушка", "Конструктор", "Творчество", "Игра", "Книга", "Развитие"];
-const themeFilters = ["Все", "Новый год", "Рождество", "Зима"];
+const typeFilters = [
+  { id: "Все", label: "Все", emoji: "🎯" },
+  { id: "Сладкое", label: "Сладкое", emoji: "🍫" },
+  { id: "Игрушка", label: "Игрушка", emoji: "🧸" },
+  { id: "Конструктор", label: "Конструктор", emoji: "🧱" },
+  { id: "Творчество", label: "Творчество", emoji: "🎨" },
+  { id: "Игра", label: "Игра", emoji: "🎲" },
+  { id: "Книга", label: "Книга", emoji: "📚" },
+  { id: "Развитие", label: "Развитие", emoji: "🔬" },
+];
+const themeFilters = [
+  { id: "Все", label: "Все праздники", emoji: "✨" },
+  { id: "Новый год", label: "Новый год", emoji: "🎄" },
+  { id: "Рождество", label: "Рождество", emoji: "⭐" },
+  { id: "Зима", label: "Зима", emoji: "❄️" },
+];
+const weightRanges = [
+  { id: "Все", label: "Любой вес", min: 0, max: 9999 },
+  { id: "до 300г", label: "до 300 г", min: 0, max: 300 },
+  { id: "300–600г", label: "300–600 г", min: 300, max: 600 },
+  { id: "600г–1кг", label: "600 г – 1 кг", min: 600, max: 1000 },
+  { id: "от 1кг", label: "от 1 кг", min: 1000, max: 9999 },
+];
 
 export default function Index() {
   const [activeSection, setActiveSection] = useState("home");
-  const [ageFilter, setAgeFilter] = useState("Все");
   const [typeFilter, setTypeFilter] = useState("Все");
   const [themeFilter, setThemeFilter] = useState("Все");
+  const [weightFilter, setWeightFilter] = useState("Все");
+  const [priceMin, setPriceMin] = useState(0);
   const [priceMax, setPriceMax] = useState(5000);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [filtersOpen, setFiltersOpen] = useState(true);
 
   const navItems = [
     { id: "home", label: "Главная" },
@@ -50,13 +76,30 @@ export default function Index() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  const activeWeight = weightRanges.find((w) => w.id === weightFilter)!;
+
   const filtered = products.filter((p) => {
-    if (ageFilter !== "Все" && p.age !== ageFilter) return false;
     if (typeFilter !== "Все" && p.type !== typeFilter) return false;
     if (themeFilter !== "Все" && p.theme !== themeFilter) return false;
-    if (p.price > priceMax) return false;
+    if (p.price < priceMin || p.price > priceMax) return false;
+    if (weightFilter !== "Все" && (p.weight < activeWeight.min || p.weight > activeWeight.max)) return false;
     return true;
   });
+
+  const activeFiltersCount = [
+    typeFilter !== "Все",
+    themeFilter !== "Все",
+    weightFilter !== "Все",
+    priceMin > 0 || priceMax < 5000,
+  ].filter(Boolean).length;
+
+  const resetFilters = () => {
+    setTypeFilter("Все");
+    setThemeFilter("Все");
+    setWeightFilter("Все");
+    setPriceMin(0);
+    setPriceMax(5000);
+  };
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "var(--brand-cream)", color: "var(--brand-dark)", fontFamily: "'Golos Text', sans-serif" }}>
@@ -197,54 +240,153 @@ export default function Index() {
             </h2>
           </div>
 
-          <div className="mb-8 space-y-4">
-            <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-xs font-medium mr-1" style={{ color: "var(--brand-gray)" }}>Возраст:</span>
-              {ageFilters.map((f) => (
-                <button key={f} onClick={() => setAgeFilter(f)}
-                  className="px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200"
-                  style={ageFilter === f ? { backgroundColor: "var(--brand-red)", color: "white" } : { backgroundColor: "#F5F0EA", color: "var(--brand-dark)" }}>
-                  {f}
+          {/* Filter panel header */}
+          <div className="flex items-center justify-between mb-4">
+            <button
+              onClick={() => setFiltersOpen(!filtersOpen)}
+              className="flex items-center gap-2 text-sm font-medium transition-all duration-200 px-4 py-2 rounded-xl"
+              style={{ backgroundColor: filtersOpen ? "var(--brand-dark)" : "#F0EBE3", color: filtersOpen ? "white" : "var(--brand-dark)" }}
+            >
+              <Icon name="SlidersHorizontal" size={15} />
+              Фильтры
+              {activeFiltersCount > 0 && (
+                <span className="w-5 h-5 rounded-full text-xs flex items-center justify-center font-semibold"
+                  style={{ backgroundColor: "var(--brand-red)", color: "white" }}>
+                  {activeFiltersCount}
+                </span>
+              )}
+            </button>
+            <div className="flex items-center gap-3">
+              <span className="text-sm" style={{ color: "var(--brand-gray)" }}>
+                Найдено: <strong style={{ color: "var(--brand-dark)" }}>{filtered.length}</strong>
+              </span>
+              {activeFiltersCount > 0 && (
+                <button onClick={resetFilters} className="text-xs flex items-center gap-1 transition-opacity hover:opacity-70"
+                  style={{ color: "var(--brand-red)" }}>
+                  <Icon name="X" size={12} /> Сбросить
                 </button>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-xs font-medium mr-1" style={{ color: "var(--brand-gray)" }}>Тип:</span>
-              {typeFilters.map((f) => (
-                <button key={f} onClick={() => setTypeFilter(f)}
-                  className="px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200"
-                  style={typeFilter === f ? { backgroundColor: "var(--brand-red)", color: "white" } : { backgroundColor: "#F5F0EA", color: "var(--brand-dark)" }}>
-                  {f}
-                </button>
-              ))}
-            </div>
-            <div className="flex flex-wrap gap-2 items-center">
-              <span className="text-xs font-medium mr-1" style={{ color: "var(--brand-gray)" }}>Тематика:</span>
-              {themeFilters.map((f) => (
-                <button key={f} onClick={() => setThemeFilter(f)}
-                  className="px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-200"
-                  style={themeFilter === f ? { backgroundColor: "var(--brand-red)", color: "white" } : { backgroundColor: "#F5F0EA", color: "var(--brand-dark)" }}>
-                  {f}
-                </button>
-              ))}
-            </div>
-            <div className="flex items-center gap-4 pt-1">
-              <span className="text-xs font-medium" style={{ color: "var(--brand-gray)" }}>Цена до:</span>
-              <input
-                type="range" min={500} max={5000} step={100}
-                value={priceMax}
-                onChange={(e) => setPriceMax(Number(e.target.value))}
-                className="w-40"
-                style={{ accentColor: "var(--brand-red)" }}
-              />
-              <span className="text-sm font-medium" style={{ color: "var(--brand-dark)" }}>{priceMax.toLocaleString()} ₽</span>
+              )}
             </div>
           </div>
+
+          {/* Filter panel */}
+          {filtersOpen && (
+            <div className="rounded-2xl p-6 mb-8 animate-fade-in"
+              style={{ backgroundColor: "#F7F2EC", border: "1px solid #e8e2d9" }}>
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                {/* Тип подарка */}
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "var(--brand-gray)" }}>
+                    Тип подарка
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {typeFilters.map((f) => (
+                      <button key={f.id} onClick={() => setTypeFilter(f.id)}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200"
+                        style={typeFilter === f.id
+                          ? { backgroundColor: "var(--brand-dark)", color: "white" }
+                          : { backgroundColor: "white", color: "var(--brand-dark)", border: "1px solid #ddd8d0" }}>
+                        <span>{f.emoji}</span> {f.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Тематика праздника */}
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "var(--brand-gray)" }}>
+                    Праздник
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {themeFilters.map((f) => (
+                      <button key={f.id} onClick={() => setThemeFilter(f.id)}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200"
+                        style={themeFilter === f.id
+                          ? { backgroundColor: "var(--brand-red)", color: "white" }
+                          : { backgroundColor: "white", color: "var(--brand-dark)", border: "1px solid #ddd8d0" }}>
+                        <span>{f.emoji}</span> {f.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Вес кондитерского */}
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "var(--brand-gray)" }}>
+                    Вес / граммовка
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {weightRanges.map((w) => (
+                      <button key={w.id} onClick={() => setWeightFilter(w.id)}
+                        className="px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-200"
+                        style={weightFilter === w.id
+                          ? { backgroundColor: "var(--brand-gold)", color: "var(--brand-dark)" }
+                          : { backgroundColor: "white", color: "var(--brand-dark)", border: "1px solid #ddd8d0" }}>
+                        {w.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Цена */}
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider mb-3" style={{ color: "var(--brand-gray)" }}>
+                    Цена, ₽
+                  </p>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="flex-1 relative">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: "var(--brand-gray)" }}>от</span>
+                      <input
+                        type="number" min={0} max={priceMax} step={100}
+                        value={priceMin}
+                        onChange={(e) => setPriceMin(Math.min(Number(e.target.value), priceMax - 100))}
+                        className="w-full pl-7 pr-2 py-2 rounded-xl text-xs text-right font-medium outline-none"
+                        style={{ border: "1px solid #ddd8d0", backgroundColor: "white", color: "var(--brand-dark)" }}
+                      />
+                    </div>
+                    <span style={{ color: "var(--brand-gray)", fontSize: "0.75rem" }}>—</span>
+                    <div className="flex-1 relative">
+                      <span className="absolute left-3 top-1/2 -translate-y-1/2 text-xs" style={{ color: "var(--brand-gray)" }}>до</span>
+                      <input
+                        type="number" min={priceMin} max={5000} step={100}
+                        value={priceMax}
+                        onChange={(e) => setPriceMax(Math.max(Number(e.target.value), priceMin + 100))}
+                        className="w-full pl-7 pr-2 py-2 rounded-xl text-xs text-right font-medium outline-none"
+                        style={{ border: "1px solid #ddd8d0", backgroundColor: "white", color: "var(--brand-dark)" }}
+                      />
+                    </div>
+                  </div>
+                  <div className="relative h-1 rounded-full" style={{ backgroundColor: "#ddd8d0" }}>
+                    <div className="absolute h-1 rounded-full" style={{
+                      backgroundColor: "var(--brand-red)",
+                      left: `${(priceMin / 5000) * 100}%`,
+                      right: `${100 - (priceMax / 5000) * 100}%`,
+                    }} />
+                    <input type="range" min={0} max={5000} step={100} value={priceMin}
+                      onChange={(e) => setPriceMin(Math.min(Number(e.target.value), priceMax - 100))}
+                      className="absolute w-full h-1 opacity-0 cursor-pointer top-0" />
+                    <input type="range" min={0} max={5000} step={100} value={priceMax}
+                      onChange={(e) => setPriceMax(Math.max(Number(e.target.value), priceMin + 100))}
+                      className="absolute w-full h-1 opacity-0 cursor-pointer top-0" />
+                  </div>
+                  <div className="flex justify-between mt-1.5 text-xs" style={{ color: "var(--brand-gray)" }}>
+                    <span>0 ₽</span><span>5 000 ₽</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          )}
 
           {filtered.length === 0 ? (
             <div className="text-center py-16" style={{ color: "var(--brand-gray)" }}>
               <p style={{ fontFamily: "'Cormorant', serif", fontSize: "1.8rem" }}>Ничего не найдено</p>
               <p className="text-sm mt-2">Попробуйте изменить фильтры</p>
+              <button onClick={resetFilters} className="mt-4 text-sm px-5 py-2 rounded-full"
+                style={{ backgroundColor: "var(--brand-red)", color: "white" }}>
+                Сбросить фильтры
+              </button>
             </div>
           ) : (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -262,9 +404,16 @@ export default function Index() {
                         {product.badge}
                       </span>
                     )}
+                    <div className="absolute top-3 right-3 bg-white rounded-full px-2 py-0.5 text-xs font-medium"
+                      style={{ color: "var(--brand-gray)", border: "1px solid #ede8e0" }}>
+                      {product.weight >= 1000 ? `${product.weight / 1000} кг` : `${product.weight} г`}
+                    </div>
                   </div>
                   <div className="p-4">
-                    <div className="text-xs mb-1" style={{ color: "var(--brand-gray)" }}>{product.type} · {product.age} лет</div>
+                    <div className="flex items-center gap-1.5 mb-1">
+                      <span className="text-xs">{typeFilters.find(t => t.id === product.type)?.emoji ?? "🎁"}</span>
+                      <span className="text-xs" style={{ color: "var(--brand-gray)" }}>{product.theme}</span>
+                    </div>
                     <div className="font-medium text-sm leading-snug mb-3" style={{ color: "var(--brand-dark)", fontFamily: "'Golos Text', sans-serif" }}>
                       {product.name}
                     </div>
