@@ -200,7 +200,7 @@ export default function Index() {
               <span style={{ color: "var(--brand-red)", fontStyle: "italic" }}>которые помнят</span>
             </h1>
             <p className="mt-6 text-base leading-relaxed" style={{ color: "var(--brand-gray)", maxWidth: "420px", fontFamily: "'Golos Text', sans-serif" }}>
-              Тщательно отобранные новогодние подарки для детей от 0 до 14 лет. Каждый подарок — это маленькое волшебство.
+              Тщательно отобранные новогодние подарки для детей от 0 до 18 лет. Каждый подарок — это маленькое волшебство.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <button
