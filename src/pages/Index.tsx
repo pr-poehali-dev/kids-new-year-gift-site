@@ -186,7 +186,7 @@ export default function Index() {
           <div className="animate-fade-in">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-sm font-medium"
               style={{ backgroundColor: "#FEF0EE", color: "var(--brand-red)" }}>
-              <span>✨</span> Новогодняя коллекция 2025
+              <span>✨</span> Новогодняя коллекция 2027
             </div>
             <h1 style={{
               fontFamily: "'Cormorant', serif",
